@@ -1,4 +1,4 @@
-# Day Four
+# Day Five
 
 ## Topics - Users and Auth
 
@@ -193,7 +193,7 @@ def profile(request):
 
 ## Exercises
 
-Begin a fresh project and implement the following:
+In either a fresh project or a previous project implement the following:
 
 - a user model
 - a user signup
@@ -215,10 +215,42 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Profile(models.Model):
-    biography = models.TextField()
+    biography = models.TextField(blank=True, null=True)
     user = OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
 ```
 
 The `OneToOneField` creates a direct connection between the `User` and the `Profile`. Deleting the User also deletes the Profile however a Profile hasn't been created by default.
 
 The `User` is accessed with the special `get_user_model()` function which is more predictable than importing the `User` directly since the `User` can be modified in different ways.
+
+## BONUS: Signals and Receivers
+
+After implementing the above it may make sense to allow Django to automatically create a linked `Profile` whenever a `User` gets created. Django does this through a "signals" system.
+
+You'll most likely add this at the end of `models.py`: 
+
+```python
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth import get_user_model
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+```
+
+The `@receiver` decorator knows that it's looking for a `.save` from a model to our database and that this specifically happens with our `User` model. When we save a `User` it will activate our `create_user_profile` which creates a new associated `Profile` when the user gets created.
+
+Signals and receivers can happen in a variety of other circumstances as well. Consider this one from the [Django docs](https://docs.djangoproject.com/en/1.11/topics/signals/#django.dispatch.receiver):
+
+```python
+from django.core.signals import request_finished
+from django.dispatch import receiver
+
+@receiver(request_finished)
+def my_callback(sender, **kwargs):
+    print("Request finished!")
+```
+
+This receiver will trigger every time that a request is finished which means we can perform certain functions after each request.
