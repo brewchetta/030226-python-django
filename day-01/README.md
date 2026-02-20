@@ -191,7 +191,7 @@ It's important to emphasize that template tags require both a beginning and endi
 Change the other templates:
 
 ```html
-{% extends 'app_name_here/base.html %}
+{% extends 'app_name_here/base.html' %}
 
 {% block content %}
 
