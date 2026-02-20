@@ -2,6 +2,7 @@
 
 ## Topics
 
+- User stories
 - Static files
 - Project planning
 - Mini project
@@ -16,9 +17,9 @@ Before getting started on the project you'll need to create a plan. Most often, 
 
 Example user stories: 
 
-`"A client should be able to log in so that they can access their content."`
-`"An admin should be able to ban disruptive users in order to maintain community standards."`
-`"A guest user should be able to see a feed of the content with only a preview of premium items to entice users"`
+`"A client will be able to log in so that they can access their content."`
+`"An admin will be able to ban disruptive users in order to maintain community standards."`
+`"A guest user will be able to see a feed of the content with only a preview of premium items to entice users"`
 
 User stories are generally informal however they give developers a direction to work towards and outline functionality. From the first example this would be a clear indicator to teams that they need to implement authentication and authorization. The last example means teams will need to create a guest feed and that data for that feed needs to be generally available.
 

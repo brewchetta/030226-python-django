@@ -69,15 +69,15 @@ From here you may build your views following best practices.
 
 - [Day One - Intro to Django](./day-01/)
 
-- [Day Two - Mini Project](./day-02/)
+- [Day Two - Mini Project w/ Static Files](./day-02/)
 
 - [Day Three - Django Models](./day-03/)
 
 - [Day Four - CRUD with Models](./day-04/)
 
-- [Day Five - Mini-Project](./day-05/)
+- [Day Five - Authentication and Authorization](./day-05/)
 
-- [Day Six - Authentication and Authorization](./day-06/)
+- [Day Six - Mini-Project w/ File Uploads](./day-06/)
 
 - [Day Seven - Class-Based Views](./day-07/)
 

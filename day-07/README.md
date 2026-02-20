@@ -109,7 +109,17 @@ class AboutView(TemplateView):
 
 ### Handling Different Methods
 
-Often a view will require handling multiple different methods, especially with the introduction of forms:
+By default we can create a class based view that handles different requests by giving those requests a name in the view:
+
+```python
+class GreetingView(View):
+    greeting = "Good Day"
+
+    def get(self, request):
+        return HttpResponse(self.greeting)
+```
+
+Additionally, specialized views can be connected to models, especially with the introduction of forms:
 
 ```python
 from django import forms
