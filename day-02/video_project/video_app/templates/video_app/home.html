@@ -5,12 +5,24 @@
     <h1>Welcome to Video App</h1>
     
     <!-- DRY - DONT REPEAT YOURSELF -->
-
+    <!-- videos_list is coming from context-->
     {% for video_id in videos_list %}
 
         <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
     {% endfor %}
+
+    {% comment %} IF / ELSE {% endcomment %}
+    
+    {% if no_videos %}
+
+        <p>No videos have been uploaded, please check back again later...</p>
+
+    {% else %}
+
+        <p>These videos have been uploaded by Chett</p>
+
+    {% endif %}
 
 
 {% endblock %}
