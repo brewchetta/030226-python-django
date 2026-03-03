@@ -1,0 +1,13 @@
+/* CASCADING STYLESHEET */
+
+/* style all h1's */
+h1 {
+    /* property: style */
+    color: green;
+    font-family: monospace;
+}
+
+/* style all p's */
+p {
+    color: purple;
+}
