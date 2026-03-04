@@ -1,0 +1,18 @@
+{% extends "movies_app/base.html" %}
+
+{% block content %}
+
+<h1>Welcome to Movies App</h1>
+
+<!-- ul stands for unordered list -->
+<ul>
+
+    {% for movie in all_movies %}
+
+        <li>{{ movie.title }} - {{ movie.release_year }} - <a href="#">Link</a></li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

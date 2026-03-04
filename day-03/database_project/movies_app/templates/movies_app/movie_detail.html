@@ -1,0 +1,15 @@
+{% extends "movies_app/base.html" %}
+
+{% block content %}
+
+<h1>{{ movie.title }}</h1>
+
+<h3>{{ movie.release_year }}</h3>
+
+<p>{{ movie.run_time }} minutes</p>
+
+<p>{{ movie.description }}</p>
+
+<p>{{ movie.rating }} / 10</p>
+
+{% endblock %}

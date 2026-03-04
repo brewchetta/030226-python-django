@@ -1,0 +1,12 @@
+CRUD - Create Read Update Delete
+SQL -  INSERT SELECT UPDATE DELETE
+
+relational data --> data that's related to data in a different
+primary key -> id -> something unique to identify that particular entry
+foreign key -> tells us which other thing this belongs to
+
+user -> id: 1
+post -> user_id: 1 --> shows that this belongs to user #1
+
+user -> id: 5
+post -> user_id: 5 --> shows that this belongs to user #1
