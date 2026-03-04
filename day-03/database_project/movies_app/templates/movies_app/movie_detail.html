@@ -4,6 +4,12 @@
 
 <h1>{{ movie.title }}</h1>
 
+{% for genre in movie.genres.all %}
+
+    <span>{{ genre.name }}</span>
+
+{% endfor %}
+
 <h3>{{ movie.release_year }}</h3>
 
 <p>{{ movie.run_time }} minutes</p>
@@ -11,5 +17,18 @@
 <p>{{ movie.description }}</p>
 
 <p>{{ movie.rating }} / 10</p>
+
+<p>{{ movie.created_at }}</p>
+
+<p>{{ movie.updated_at }}</p>
+
+<ul>
+    {% for character in movie.characters.all %}
+    
+        <li>{{ character.name }} - {{ character.special_power }}</li>
+    
+    {% endfor %}
+</ul>
+
 
 {% endblock %}

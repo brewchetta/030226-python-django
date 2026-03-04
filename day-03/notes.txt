@@ -10,3 +10,6 @@ post -> user_id: 1 --> shows that this belongs to user #1
 
 user -> id: 5
 post -> user_id: 5 --> shows that this belongs to user #1
+
+movie -> id: 6 (marvel's civil war)
+movie_character -> movie_id: 6 --> starred in marvel's civil war
