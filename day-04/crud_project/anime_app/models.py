@@ -22,3 +22,12 @@ class Anime(models.Model):
 
     # DELETE
     # naruto.delete()
+
+
+class AnimeGame(models.Model):
+    name = models.CharField(max_length=100)
+
+    anime = models.ForeignKey(Anime, on_delete=models.CASCADE, related_name="games")
+
+    def __str__(self):
+        return self.name

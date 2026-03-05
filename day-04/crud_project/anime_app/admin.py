@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import Anime
+from .models import Anime, AnimeGame
 
-admin.register(Anime)
+admin.site.register(Anime)
+admin.site.register(AnimeGame)

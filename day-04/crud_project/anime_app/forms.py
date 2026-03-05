@@ -1,5 +1,5 @@
 from django import forms
-from .models import Anime
+from .models import Anime, AnimeGame
 
 # without character model (generic form)
 # class AnimeForm(forms.Form):
@@ -12,3 +12,9 @@ class AnimeForm(forms.ModelForm):
     class Meta:
         model = Anime
         fields = ['name', 'main_character', 'num_seasons']
+
+
+class AnimeGameForm(forms.ModelForm):
+    class Meta:
+        model = AnimeGame
+        fields = ['name', 'anime']

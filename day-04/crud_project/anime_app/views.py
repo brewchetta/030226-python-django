@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Anime
-from .forms import AnimeForm
+from .models import Anime, AnimeGame
+from .forms import AnimeForm, AnimeGameForm
 
 # HOME #
 def home(request):
@@ -86,3 +86,55 @@ def delete_anime(request, id):
 
     context = { "anime": anime_instance }
     return render(request, "anime_app/delete_anime.html", context)
+
+
+
+# GAMES INDEX #
+def games(request):
+    context = { 'anime_games': AnimeGame.objects.all() }
+    return render(request, "anime_app/games.html", context)
+
+# CREATE GAME #
+def create_game(request):
+    if request.method == "POST":
+        form = AnimeGameForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('games')
+        else:
+            context = { "form": form }
+            return render(request, "anime_app/create_game.html", context)
+
+    form = AnimeGameForm()
+    context = { "form": form }
+    return render(request, "anime_app/create_game.html", context)
+
+
+# EDIT GAME #
+def edit_game(request, id):
+    game_instance = get_object_or_404(AnimeGame, pk=id)
+
+    if request.method == "POST":
+        form = AnimeGameForm(request.POST, instance=game_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('games')
+        else:
+            context = { "form": form, "game": game_instance }
+            return render(request, "anime_app/edit_game.html", context)
+            
+    form = AnimeGameForm(instance=game_instance)
+    context = { "form": form, "game": game_instance }
+    return render(request, "anime_app/edit_game.html", context)
+
+
+# DELETE GAME #
+def delete_game(request, id):
+    game_instance = get_object_or_404(AnimeGame, pk=id)
+
+    if request.method == "POST":
+        game_instance.delete()
+        return redirect('games')
+
+    context = { "game": game_instance }
+    return render(request, "anime_app/delete_game.html", context)

@@ -1,0 +1,15 @@
+{% extends "anime_app/base.html" %}
+
+{% block content %}
+
+
+<h1>Anime Games</h1>
+
+{% for game in anime_games %}
+
+    <p>{{ game.name }} | {{ game.anime.name }}</p>
+
+{% endfor %}
+
+
+{% endblock %}
