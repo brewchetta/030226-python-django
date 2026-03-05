@@ -8,7 +8,7 @@
 
         {% for anime in all_anime %}
         
-        <li>{{ anime.name }} | {{ anime.main_character }} | Seasons: {{ anime.num_seasons }}</li>
+        <li>{{ anime.name }} | {{ anime.main_character }} | Seasons: {{ anime.num_seasons }} | <a href="{% url 'edit_anime' id=anime.id %}">Edit</a> | <a href="{% url 'delete_anime' id=anime.id %}">Delete</a> </li>
         
         {% endfor %}
         

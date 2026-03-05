@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Anime
 from .forms import AnimeForm
 
@@ -10,12 +10,7 @@ def home(request):
         form = AnimeForm(request.POST)
         # checks if the form is valid and then adds it to db
         if form.is_valid():
-            new_anime = Anime(
-                name=form.cleaned_data["name"], 
-                main_character=form.cleaned_data["main_character"],
-                num_seasons=form.cleaned_data["num_seasons"]
-            )
-            new_anime.save()
+            form.save()
         # if not valid show an error message
         else:
             context = {
@@ -55,3 +50,39 @@ def home(request):
 #     all_anime = Anime.objects.all()
 #     context = { "all_anime": all_anime }
 #     return render(request, "anime_app/home.html", context)
+
+
+# EDIT ANIME #
+def edit_anime(request, id):
+    anime_instance = get_object_or_404(Anime, pk=id)
+    # if the form is submitted
+    if request.method == "POST":
+        form = AnimeForm(request.POST, instance=anime_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        else:
+            context = { 
+                "anime": anime_instance,
+                "form": form
+            }
+            return render(request, "anime_app/edit_anime.html", context)
+    # render the form the first time
+    form = AnimeForm(instance=anime_instance)
+    context = { 
+        "anime": anime_instance,
+        "form": form 
+    }
+    return render(request, "anime_app/edit_anime.html", context)
+
+
+# DELETE ANIME #
+def delete_anime(request, id):
+    anime_instance = get_object_or_404(Anime, pk=id)
+    # if the form gets submitted delete and go home
+    if request.method == "POST":
+        anime_instance.delete()
+        return redirect('home')
+
+    context = { "anime": anime_instance }
+    return render(request, "anime_app/delete_anime.html", context)
