@@ -1,0 +1,36 @@
+{% extends "anime_app/base.html" %}
+
+{% block content %}
+
+    <h1>We ♡ Anime</h1>
+
+    <ul>
+
+        {% for anime in all_anime %}
+        
+        <li>{{ anime.name }} | {{ anime.main_character }} | Seasons: {{ anime.num_seasons }}</li>
+        
+        {% endfor %}
+        
+    </ul>
+
+    <!-- show error if we got one -->
+    {% if error %}
+
+        <p>{{ error }}</p>
+
+    {% endif %}
+
+    <form method="post">
+        <!-- csrf_token adds protection against csrf attacks -->
+        <!-- ...and also make django happy -->
+        {% csrf_token %}
+
+        <!-- renders the constructed version of the form for our Anime -->
+        {{ form.as_p }}
+
+        <input type="submit" value="Add New Anime">
+
+    </form>
+
+{% endblock %}
