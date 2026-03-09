@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, EditProfileForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
@@ -64,4 +64,14 @@ def logout_user(request):
 # PROFILE #
 @login_required
 def profile(request):
-    return render(request, "auth_app/profile.html")
+    user_profile = request.user.profile
+    if request.method == "POST":
+        form = EditProfileForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+        context = { "form": form }
+        return render(request, "auth_app/profile.html", context)
+
+    form = EditProfileForm(instance=user_profile)
+    context = { "form": form }
+    return render(request, "auth_app/profile.html", context)
