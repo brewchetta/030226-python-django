@@ -9,8 +9,9 @@
 <p>Age: {{ request.user.profile.age }}</p>
 <p>Bio: {{ request.user.profile.bio }}</p>
 <p>Location: {{ request.user.profile.location }}</p>
+<img src="{{ request.user.profile.profile_photo.url }}" alt="{{ request.user.profile.profile_photo }}">
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
     {% csrf_token %}
 

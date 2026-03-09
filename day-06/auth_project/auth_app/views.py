@@ -66,7 +66,7 @@ def logout_user(request):
 def profile(request):
     user_profile = request.user.profile
     if request.method == "POST":
-        form = EditProfileForm(request.POST, instance=user_profile)
+        form = EditProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
         context = { "form": form }

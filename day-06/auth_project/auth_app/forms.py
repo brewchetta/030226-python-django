@@ -22,4 +22,4 @@ class LoginForm(forms.Form):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ["age", "bio", "location"]
+        fields = ["age", "bio", "location", "profile_photo"]

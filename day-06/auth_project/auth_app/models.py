@@ -10,6 +10,7 @@ class UserProfile(models.Model):
     bio = models.TextField(null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
     location = models.CharField(null=True, blank=True, max_length=200)
+    profile_photo = models.ImageField(null=True, blank=True, upload_to="profile_photos")
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
 
