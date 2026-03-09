@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Auth</title>
+</head>
+<body>
+
+    <!-- Show the logout / user details if logged in -->
+
+    {% if request.user.id %}
+
+        <p>{{ request.user.username }} - {{ request.user.email }}</p>
+        <a href="{% url 'logout_user' %}">Logout</a>
+
+    {% else %}
+
+        <a href="{% url 'signup' %}">Signup</a>
+        <a href="{% url 'login_user' %}">Login</a>
+
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'auth_app/base.html' %}
+
+{% block content %}
+
+<h1>Profile</h1>
+
+<p>{{ request.user.username }}</p>
+<p>{{ request.user.email }}</p>
+
+{% endblock %}
