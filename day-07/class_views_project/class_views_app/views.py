@@ -39,26 +39,58 @@ class MorningMessageView(TemplateView):
 
 
 # WEATHER FORM (OLD) #
-def weather_form(request):
-    if request.method == "POST":
-        form = WeatherForm(request.POST)
+# def weather_form(request):
+#     # POST #
+#     if request.method == "POST":
+#         form = WeatherForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             context = { "form": WeatherForm(), "weather": Weather.objects.all() }
+#             return render(request, "class_views_app/weather_form.html", context)
+#         else:
+#             context = { 
+#                 "form": form,
+#                 "weather": Weather.objects.all()
+#             }
+#             return render(request, "class_views_app/weather_form.html", context)
+
+#     # SHOW THE PAGE
+#     form = WeatherForm()
+#     weather = Weather.objects.all()
+#     context = { 
+#         "form": form, 
+#         "weather": weather
+#     }
+#     return render(request, "class_views_app/weather_form.html", context)
+
+
+# WEATHER #
+class WeatherView(View):
+    template_name = "class_views_app/weather_form.html"
+    form_class = WeatherForm
+
+    # SHOW THE PAGE / GET REQUEST
+    def get(self, request):
+        form = self.form_class()
+        weather = Weather.objects.all()
+
+        context = {
+            "form": form,
+            "weather": weather
+        }
+
+        return render(request, self.template_name, context)
+    
+    # SUBMIT THE FORM / POST REQUEST
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-            context = { "form": WeatherForm(), "weather": Weather.objects.all() }
+            context = { "form": self.form_class(), "weather": Weather.objects.all() }
             return render(request, "class_views_app/weather_form.html", context)
         else:
             context = { 
                 "form": form,
                 "weather": Weather.objects.all()
             }
-            return render(request, "class_views_app/weather_form.html", context)
-    form = WeatherForm()
-    context = { 
-        "form": form, 
-        "weather": Weather.objects.all()
-    }
-    return render(request, "class_views_app/weather_form.html", context)
-
-
-
-# class WeatherFormView(View):
+            return render(request, self.template_name, context)

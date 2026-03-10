@@ -8,5 +8,5 @@ urlpatterns = [
 
     path('morning-message', views.MorningMessageView.as_view(), name="morning_message"),
 
-    path('weather', views.weather_form, name="weather")
+    path('weather', views.weather, name="weather")
 ]
