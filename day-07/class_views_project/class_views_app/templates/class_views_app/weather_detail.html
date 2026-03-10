@@ -1,0 +1,15 @@
+{% extends "class_views_app/base.html" %}
+
+{% block content %}
+
+<h1>Weather for {{weather.city}}, {{weather.country}}</h1>
+
+<p>For {{weather.date}}</p>
+
+<p>Temp: {{weather.temp_f}}f</p>
+
+<p>Current conditions: {{weather.condition}}</p>
+
+<p>Wind speed: {{weather.wind_speed_mph}}mph</p>
+
+{% endblock %}

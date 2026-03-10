@@ -122,3 +122,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# to get information from the .env file...
+import os
+# pip install python-dotenv
+from dotenv import load_dotenv
+
+load_dotenv()
+
+WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY")

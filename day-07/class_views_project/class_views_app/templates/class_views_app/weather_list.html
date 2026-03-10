@@ -1,0 +1,13 @@
+{% extends "class_views_app/base.html" %}
+
+{% block content %}
+
+<!-- object_list is actually Weather.objects.all() -->
+<!-- a.k.a. every weather report -->
+{% for weather in weather_reports %}
+
+    <p>{{weather.city}} - {{weather.condition}} - {{weather.temp_f}} farenheit</p>
+
+{% endfor %}
+
+{% endblock %}
