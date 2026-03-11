@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parts Index</title>
+
+    <script>
+
+        async function getAPIInfo() {
+
+            const response = await fetch("http://localhost:8000/api/v1/mars-rover-parts")
+            const data = await response.json()
+            data.forEach(part => {
+
+                const li = document.createElement('li')
+                li.textContent = part.name
+                document.querySelector('ul').append(li)
+
+            })
+
+        }
+
+        getAPIInfo()
+
+    </script>
+
+</head>
+<body>
+
+    <h1>Parts Index</h1>
+
+    <ul></ul>
+
+</body>
+</html>
