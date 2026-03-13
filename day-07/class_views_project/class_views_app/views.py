@@ -152,10 +152,3 @@ def get_weather(request, city):
     context = { "weather_data": weather_data }
     # render page
     return render(request, "class_views_app/get_weather.html", context)
-
-# RETURN AT 3:33 EST
-# RETURN AT 3:33 EST
-# RETURN AT 3:33 EST
-# RETURN AT 3:33 EST
-# RETURN AT 3:33 EST
-# RETURN AT 3:33 EST
