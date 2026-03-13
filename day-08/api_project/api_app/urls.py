@@ -9,4 +9,6 @@ urlpatterns = [
     path('parts-index', views.PartsIndex.as_view(), name="parts_index"),
 
     path('api/v1/rovers', views.RoverList.as_view(), name="rover_list"),
+
+    path('mars-weather', views.mars_weather, name="mars-weather")
 ]

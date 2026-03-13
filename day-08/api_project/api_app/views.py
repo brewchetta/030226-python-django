@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -152,3 +153,28 @@ class RoverList(APIView):
         all_rovers = Rover.objects.all()
         serializer = RoverSerializer(all_rovers, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+
+
+# FOR USING PUBLIC APIS WITH API KEYS
+
+from django.conf import settings
+import requests
+
+MARS_WEATHER_URL = f"https://api.nasa.gov/insight_weather/?api_key={settings.NASA_API_KEY}&feedtype=json&ver=1.0"
+
+
+def mars_weather(request):
+    response = requests.get(MARS_WEATHER_URL)
+    # if the response came back with a 200
+    if response.ok:
+        # parse out data so it can be used
+        data = response.json()
+        context = { "data": data }
+        return render(request, "api_app/mars_weather.html", context)
+
+    # if response wasn't ok (bad connection, server issues, etc.)
+    else:
+        context = { "errors": "Could not get weather data, please try again later" }
+        return render(request, "api_app/mars_weather.html", context)
